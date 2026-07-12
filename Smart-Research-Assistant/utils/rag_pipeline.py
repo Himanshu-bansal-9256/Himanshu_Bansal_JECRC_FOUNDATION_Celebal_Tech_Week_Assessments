@@ -47,6 +47,12 @@ class RAGPipeline:
     def retrieve(self, question):
 
         if self.vector_store is None:
+
+            self.vector_store = load_vector_store(
+                self.embedding_model
+            )
+
+        if self.vector_store is None:
             raise ValueError(
                 "Please upload PDFs first."
             )
